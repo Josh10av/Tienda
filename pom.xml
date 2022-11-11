@@ -52,6 +52,12 @@
 	  <artifactId>mysql-connector-j</artifactId>
 	  <scope>runtime</scope>
 	 </dependency>
+	 <dependency>
+	  <groupId>org.springframework</groupId>
+	  <artifactId>spring-web</artifactId>
+	  <version>5.3.23</version>
+	  <type>jar</type>
+	 </dependency>
 	</dependencies>
 
 	<build>
