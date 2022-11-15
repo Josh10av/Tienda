@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -23,6 +25,14 @@ public class Cliente implements Serializable {
     private String apellidos;
     private String correo;
     private String telefono;
+    
+    @JoinColumn(name="id_credito", referencedColumnName = "id_credito")
+    @ManyToOne
+    private Credito credito;
+    
+        public Cliente () {
+    
+    }
 
     
     public Cliente(String nombre, String apellidos, String correo, String telefono) {
@@ -32,8 +42,15 @@ public class Cliente implements Serializable {
         this.telefono = telefono;
        
     }
-    public Cliente () {
-    
+
+    public Cliente(Long idCliente, String nombre, String apellidos, String correo, String telefono, Credito credito) {
+        this.idCliente = idCliente;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.credito = credito;
     }
+
     
 }

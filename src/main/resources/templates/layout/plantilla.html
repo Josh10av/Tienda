@@ -2,18 +2,36 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
     <head>
+        <link rel="stylesheet" href="../../static/css/menu.css" type="text/css"/>
+
         <title>TechShop</title>
         <meta charset="UTF-8"/>
            </head>  
     <body>
         
-        <header th:fragment="header">
-            <h1>TechShop<h1/> 
+        <header th:fragment="header"class="header"><!-- Etiqueta para ofrecerle al browser infode que es un ecabezado-->
+          
+      
+        <nav class= "nav"> <!-- esta etiqueta es para ilustrar al bowser que posiblemente es un menú  -->
+            <a th:href="@{/}" class="logo nav-link">TechShop</a>
+            <ul class="nav-menu">
+                <li class="nav-menu-item">
+                    <a class="nav-menu-link nav-link" th:href="@{/cliente/listado}">Clientes</a> 
+                </li>
+                <li class="nav-menu-item">
+                    <a class="nav-menu-link nav-link" th:href="@{/categoria/listado}">Categorias</a> 
+                </li> 
+                <li class="nav-menu-item">
+                    <a class="nav-menu-link nav-link" th:href="@{/articulo/listado}">Articulos</a> 
+                </li> 
+
+            </ul>
+        </nav>
                 
         </header>
         
-        <footer th:fragment="footer">
-            <<p>&COPY Derechos Reservados 2022</p> 
+        <footer th:fragment="footer" class="footer">
+            <p>&COPY Derechos Reservados 2022</p> 
                 
         </footer> 
         

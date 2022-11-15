@@ -15,6 +15,5 @@ public void delete (Cliente cliente);
 
 public Cliente getCliente (Cliente cliente);
 
-    public Cliente find(Cliente cliente);
-    
+     
 }
