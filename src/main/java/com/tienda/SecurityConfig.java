@@ -1,4 +1,3 @@
-
 package com.tienda;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,45 +9,42 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@Configuration 
-@EnableWebSecurity 
+@Configuration
+@EnableWebSecurity
 
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    
+
     @Autowired
     private UserDetailsService userDetailsService;
-    
-    
-    @Override
-    protected void configure(AuthenticationManagerBuilder builder) throws Exception{
-        builder.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder ());
-        
-    }
-    
-   @Override
-    protected void configure(HttpSecurity http) throws Exception{
-        http.authorizeRequests()
-                .antMatchers("/articulo/nuevo",        "/articulo/guardar", 
-                             "/articulo/modificar/**", "/articulo/eliminar/**",
-                             "/categoria/nuevo",       "/categoria/guardar",
-                             "/categoria/modificar/**","/categoria/eliminar/**",
-                             "/cliente/nuevo",         "/cliente/guardar",  
-                             "/cliente/modificar/**",  "/cliente/eliminar/**",
-                             "/usuario/listado",  
-                             "/usuario/nuevo",         "/usuario/guardar",  
-                             "/usuario/modificar/**",  "/usuario/eliminar/**")
-                    .hasRole("ADMIN")
-                .antMatchers("/articulo/listado", "/categoria/listado",
-                             "/cliente/listado")
-                    .hasAnyRole("ADMIN","VENDEDOR")
-                .antMatchers("/")
-                    .hasAnyRole("USER","VENDEDOR","ADMIN")
-                .and()
-                    .formLogin()
-                    .loginPage("/login")
-                .and()
-                    .exceptionHandling().accessDeniedPage("/errores/403");
-    }  
-}    
-    
 
+    @Override
+    protected void configure(AuthenticationManagerBuilder builder) throws Exception {
+        builder.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/articulo/nuevo", "/articulo/guardar",
+                        "/articulo/modificar/**", "/articulo/eliminar/**",
+                        "/categoria/nuevo", "/categoria/guardar",
+                        "/categoria/modificar/**", "/categoria/eliminar/**",
+                        "/cliente/nuevo", "/cliente/guardar",
+                        "/cliente/modificar/**", "/cliente/eliminar/**",
+                        "/usuario/listado",
+                        "/usuario/nuevo", "/usuario/guardar",
+                        "/usuario/modificar/**", "/usuario/eliminar/**")
+                .hasRole("ADMIN")
+                .antMatchers("/articulo/listado", "/categoria/listado",
+                        "/cliente/listado")
+                .hasAnyRole("ADMIN", "VENDEDOR")
+                .antMatchers("/","/carrito/**")
+               .permitAll()
+                .antMatchers("/facturar/carrito")
+                .authenticated()
+                .and().formLogin().loginPage("/login")
+                .and()
+                .exceptionHandling().accessDeniedPage("/errores/403");
+    }
+}
