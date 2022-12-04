@@ -28,7 +28,7 @@ public class ArticuloController {
     }
     
     @GetMapping("/articulo/nuevo")
-    public String nuevoArticulo (Articulo articulo){
+    public String nuevoArticulo (Articulo articulo, Model model){
         return "/articulo/modifica";
     }
     
