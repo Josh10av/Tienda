@@ -1,7 +1,11 @@
 {
     "elements": {
         "br": {},
-        "a": {}
+        "a": {
+            "attributes": {
+                "onclick": {}
+            }
+        }
     },
     "attributes": {
         "href": {}
